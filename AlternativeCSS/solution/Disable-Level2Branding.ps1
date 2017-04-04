@@ -44,17 +44,17 @@ Write-Host ""
 
 try
 {
-	Connect-SPOnline $targetWebUrl -Credentials $Credentials
+	Connect-PnPOnline $targetWebUrl -Credentials $Credentials
 
 	Write-Host -ForegroundColor White "Resetting alternative css"
 
-    #https://github.com/OfficeDev/PnP-PowerShell/blob/master/Documentation/SetSPOWeb.md
-	Set-SPOWeb -SiteLogoUrl "" -AlternateCssUrl " "
+    #https://github.com/OfficeDev/PnP-PowerShell/blob/master/Documentation/SetPnPWeb.md
+	Set-PnPWeb -SiteLogoUrl "" -AlternateCssUrl " "
 
-	$customAction = Get-SPOCustomAction -Scope Site | where { $_.Name -eq "PnPResponsiveUI" }
+	$customAction = Get-PnPCustomAction -Scope Site | where { $_.Name -eq "PnPResponsiveUI" }
 	if ($customAction -ne $null)
 	{
-    	Remove-SPOCustomAction -Identity $customAction.Id -Scope Site -Force
+    	Remove-PnPCustomAction -Identity $customAction.Id -Scope Site -Force
     }
 
 	Write-Host ""

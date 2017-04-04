@@ -66,23 +66,23 @@ try
 	if ($serveLocal)
 	{
 		Write-Host -ForegroundColor White "Not provisioning branding assets - expecting local development hosting"
-		Connect-SPOnline $targetWebUrl -Credentials $Credentials
+		Connect-PnPOnline $targetWebUrl -Credentials $Credentials
 
 		#change root path to local host
 		$rootPath = "https://localhost:3000"
 	}
 	else
 	{
-		Connect-SPOnline $targetSiteUrl -Credentials $Credentials
+		Connect-PnPOnline $targetSiteUrl -Credentials $Credentials
 
 		Write-Host -ForegroundColor White "Provisioning asset files to $($targetSiteUrl)"
-		Apply-SPOProvisioningTemplate -Path .\templates\Custom.Level2Branding.Infrastructure.xml -Handlers Files
+		Apply-PnPProvisioningTemplate -Path .\templates\Custom.Level2Branding.Infrastructure.xml -Handlers Files
 
 		#If the asset and target locations are different, then open up the target web now
 		if($targetSiteUrl -ne $targetWebUrl)
 		{	
-			Disconnect-SPOnline
-			Connect-SPOnline $targetWebUrl -Credentials $Credentials
+			Disconnect-PnPnline
+			Connect-PnPnline $targetWebUrl -Credentials $Credentials
 		}
 	}
 
@@ -92,15 +92,15 @@ try
 
 	Write-Host -ForegroundColor White "Setting alternative css to $($altCssUrl)"
 
-    #https://github.com/OfficeDev/PnP-PowerShell/blob/master/Documentation/SetSPOWeb.md
-	Set-SPOWeb -AlternateCssUrl $altCssUrl -SiteLogoUrl $logoUrl
+    #https://github.com/OfficeDev/PnP-PowerShell/blob/master/Documentation/SetPnPWeb.md
+	Set-PnPWeb -AlternateCssUrl $altCssUrl -SiteLogoUrl $logoUrl
 
 
 	#Embed JavaScript using custom action
 	Write-Host ""
 	Write-Host -ForegroundColor White "Setting Custom Action to Embed JavaScript"
 
-	Apply-SPOProvisioningTemplate -Path .\templates\Custom.Level2Branding.Template.xml -Handlers CustomActions,Features -Parameters @{"InfrastructureSiteUrl"=$rootPath}
+	Apply-PnPProvisioningTemplate -Path .\templates\Custom.Level2Branding.Template.xml -Handlers CustomActions,Features -Parameters @{"InfrastructureSiteUrl"=$rootPath}
 
 	Write-Host ""
 	Write-Host -ForegroundColor Green "Alterntive CSS applied"

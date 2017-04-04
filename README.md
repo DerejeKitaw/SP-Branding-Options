@@ -1,4 +1,4 @@
-# Ignite 2016 - Customizing and Branding SharePoint Online Team Sites Demos #
+# Customizing and Branding SharePoint Options Demos #
 
 Contains the following demos:
 

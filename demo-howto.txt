@@ -1,0 +1,38 @@
+E:\Datastore\Git Projects\GitHub\BrandingTeamSites\Theming
+admin@MOD513885.onmicrosoft.com
+
+Demo 1 - theming:
+	https://mod513885.sharepoint.com/sites/marketing
+
+	$cred = Get-Credential -Message "Enter Admin Credentials"
+	.\Set-SPTheme.ps1 -TargetWebUrl "https://mod513885.sharepoint.com/sites/marketing" -masterUrl "oslo.master" -Credentials $cred
+
+	.\Set-SPTheme.ps1 -TargetWebUrl "https://contoso2016g.sharepoint.com/sites/NorthAmericanMarketingCampaign" -masterUrl "oslo.master" -Credentials $cred
+
+	.\Set-SPTheme.ps1 -TargetWebUrl "https:"//mod513885.sharepoint.com/sites/demo-team-branding/marketing" -TargetSiteUrl "https://mod513885.sharepoint.com/sites/demo-team-branding" -masterUrl "oslo.master" -Credentials $cred
+
+
+Demo 1.2 - level 2 branding - alternative css:
+	https://mod513885.sharepoint.com/sites/marketing
+
+	$cred = Get-Credential -Message "Enter Admin Credentials"
+	.\Set-Level2Branding.ps1 -TargetWebUrl "https://mod513885.sharepoint.com/sites/marketing" -Credentials $cred -ServeLocal $true
+
+	.\Set-Level2Branding.ps1 -TargetWebUrl "https://mod513885.sharepoint.com/sites/demo-team-branding/marketing" -TargetSiteUrl "https://mod513885.sharepoint.com/sites/demo-team-branding" -Credentials $cred
+
+	.\Set-Level2Branding.ps1 -TargetWebUrl "https://mod513885.sharepoint.com/sites/demo-team-branding/marketing" -Credentials $cred -ServeLocal $true
+	
+	.\Disable-Level2Branding.ps1 -TargetWebUrl "https://mod513885.sharepoint.com/sites/marketing" -Credentials $cred
+
+	
+Demo 2
+	$cred = Get-Credential -Message "Enter Admin Credentials"
+	.\Set-Level3Branding.ps1 -TargetSiteUrl "https://mod513885.sharepoint.com/sites/marketing" -Credentials $cred -ServeLocal $true
+	
+	.\Disable-Level3Branding.ps1 -TargetSiteUrl "https://mod513885.sharepoint.com/sites/marketing" -Credentials $cred
+
+Demo 3 - Design manager - master page - page layout
+	https://pixelmill.sharepoint.com/sites/demo-branding-workshop/
+
+Demo 4 - Display Templates
+	
